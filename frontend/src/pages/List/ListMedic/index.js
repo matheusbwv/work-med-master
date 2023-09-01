@@ -20,7 +20,12 @@ export function ListMedic() {
 
   const [visible, setVisible] = useState(false);
   const [doctors, setDoctor] = useState([]);
-  const [date, setDate] = useState(new Date());
+  // const [date, setDate] = useState(new Date());
+
+  // const dateFormatted = useMemo(
+  //   () => format(date, "d 'de' MMMM", { locale: pt }),
+  //   [date],
+  // );
 
   useEffect(() => {
     async function loadMedic() {

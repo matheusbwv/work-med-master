@@ -76,8 +76,8 @@ export const Infor = styled.ul`
 export const MoreInfor = styled.div`
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
-  margin: -5px 35px 0 35px;
+  justify-content: space-around;
+  margin: -5px;
 
   h3 {
     padding: 10px 0 5px 0;
