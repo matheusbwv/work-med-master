@@ -1,17 +1,31 @@
 import * as Yup from 'yup';
+import Doctor from '../models/Doctor';
+import Surgery from '../models/Surgery';
 import Patient from '../models/Patient';
+import Room from '../models/Room';
 
 class PatientController {
   async index(req, res) {
+    const { page = 1 } = req.body;
     const patient = await Patient.findAll({
-      attributes: [
-        'id',
-        'name',
-        'cpf',
-        'gender',
-        'adress',
-        'medic_history',
-        'contact'],
+      order: ['created_at'],
+      attributes: ['id', 'expenses', 'status_post_operation', 'name', 'cpf', 'gender', 'adress', 'medic_history', 'contact'],
+      limit: 20,
+      offset: (page - 1) * 20,
+      include: [
+        {
+          model: Doctor,
+          attributes: ['name', 'speciality'],
+        },
+        {
+          model: Surgery,
+          attributes: ['name', 'description'],
+        },
+        {
+          model: Room,
+          attributes: ['name', 'floor', 'number'],
+        },
+      ],
     });
 
     return res.json(patient);
@@ -42,7 +56,7 @@ class PatientController {
       id,
       name, cpf, gender,
       adress, medic_history,
-      contact,
+      contact, expenses, status_post_operation,
     } = await Patient.create(req.body);
 
     return res.json({
@@ -53,6 +67,8 @@ class PatientController {
       adress,
       medic_history,
       contact,
+      expenses,
+      status_post_operation,
     });
   }
 
