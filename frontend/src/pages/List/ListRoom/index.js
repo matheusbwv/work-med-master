@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { removeMedic } from '../../../store/modules/register/registerMedic/actions';
+
+import { removeRoom } from '../../../store/modules/register/registerRoom/actions';
 
 import Header from '../../../components/Barside';
 import DefaultLayout from '../../_layouts/default/index';
@@ -19,7 +20,7 @@ export function ListRoom() {
   const dispatch = useDispatch();
 
   const [visible, setVisible] = useState(false);
-  const [doctors, setDoctor] = useState([]);
+  const [rooms, setRoom] = useState([]);
   // const [date, setDate] = useState(new Date());
 
   // const dateFormatted = useMemo(
@@ -28,21 +29,21 @@ export function ListRoom() {
   // );
 
   useEffect(() => {
-    async function loadMedic() {
-      const response = await api.get('doctors');
+    async function loadRoom() {
+      const response = await api.get('rooms');
 
-      setDoctor(response.data);
+      setRoom(response.data);
     }
 
-    loadMedic();
+    loadRoom();
   }, []);
 
   const handleToggleVisible = () => {
     setVisible(!visible);
   };
 
-  const handleRemove = (doctor) => {
-    dispatch(removeMedic(doctor));
+  const handleRemove = (room) => {
+    dispatch(removeRoom(room));
   };
 
   return (
@@ -50,60 +51,44 @@ export function ListRoom() {
       <Header />
       <Container>
         <h2>Listagem</h2>
-        <span>Médico</span>
+        <span>Sala</span>
         <Wrapper>
-          <Link to="/register/doctor"><button type="button">Cadastrar</button></Link>
-          {doctors.map((doctor) => (
+          <Link to="/register/room"><button type="button">Cadastrar</button></Link>
+          {rooms.map((room) => (
             <List>
               <Badge onClick={handleToggleVisible}>
                 <Infor>
                   <li>🚀</li>
-                  <li>{doctor.name}</li>
+                  <li>{`SALA - ${room.number}`}</li>
                   <li>31/08/2002</li>
                   <li>
-                    <Link to="/update/doctor"><img src={Edit} alt="Edit" /></Link>
-                    <button onClick={() => handleRemove(doctor.id)} type="button"><img src={Remove} alt="Remove" /></button>
+                    <Link to="/update/room"><img src={Edit} alt="Edit" /></Link>
+                    <button onClick={() => handleRemove(room.id)} type="button"><img src={Remove} alt="Remove" /></button>
                   </li>
                 </Infor>
               </Badge>
               <Visible visible={visible}>
                 <MoreInfor>
                   <Grid>
-                    <Part size="double">
-                      <h3>Dados pessoais</h3>
+                    <Part>
+                      <h3>Informações</h3>
                     </Part>
                     <Part>
-                      <strong>Nome</strong>
-                      <span>{doctor.name}</span>
+                      <strong>Número</strong>
+                      <span>{room.number}</span>
                     </Part>
                     <Part>
-                      <strong>CPF</strong>
-                      <span>{doctor.cpf}</span>
-                    </Part>
-                    <Part>
-                      <strong>Nascimento</strong>
-                      <span>Nome</span>
-                    </Part>
-                    <Part>
-                      <strong>Endereço</strong>
-                      <span>{doctor.adress}</span>
-                    </Part>
-                    <Part>
-                      <strong>Gender</strong>
-                      <span>{doctor.gender}</span>
+                      <strong>Localização</strong>
+                      <span>{`Sala ${room.number} no ${room.floor}`}</span>
                     </Part>
                   </Grid>
                   <Grid>
-                    <Part size="double">
-                      <h3>Especialização</h3>
+                    <Part>
+                      <h3>Especificações</h3>
                     </Part>
                     <Part>
-                      <strong>CRM</strong>
-                      <span>{doctor.crm}</span>
-                    </Part>
-                    <Part>
-                      <strong>Especialidade</strong>
-                      <span>{doctor.speciality}</span>
+                      <strong>Descrição</strong>
+                      <span>{room.name}</span>
                     </Part>
                   </Grid>
                 </MoreInfor>

@@ -13,6 +13,11 @@ export default function registerPatient(state = INITIAL_STATE, action = {}) {
         draft.token = action.payload.token;
         draft.room = action.payload.room;
       });
+    case '@remove/REMOVE_ROOM':
+      return produce(state, (draft) => {
+        draft.token = action.payload.token;
+        draft.room = null;
+      });
     default:
       return state;
   }

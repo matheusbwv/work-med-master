@@ -19,6 +19,21 @@ export function registerRoomInSuccess(token, room) {
   };
 }
 
+export function removeRoom(id) {
+  return {
+    type: '@remove/REMOVE_ROOM',
+    payload: {
+      id,
+    },
+  };
+}
+
+export function removeFailure() {
+  return {
+    type: '@remove/REMOVE_ROOM',
+  };
+}
+
 export function registerFailure() {
   return {
     type: '@register/REGISTER_FAILURE',

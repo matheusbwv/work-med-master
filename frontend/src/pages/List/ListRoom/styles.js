@@ -1,4 +1,4 @@
-import { styled, css } from 'styled-components';
+import { styled } from 'styled-components';
 
 export const Container = styled.div`
   margin: 25px 0 0 40px;
@@ -29,7 +29,7 @@ export const Wrapper = styled.div`
 
   a {
     button {
-    background: #AC3483;
+    background: #16A085;
     border: 0;
     padding: 10px 30px;
     border-radius: 10px;
@@ -86,22 +86,9 @@ export const MoreInfor = styled.div`
   }
 `;
 
-const sizes = {
-  default: css`
-    grid-column: span 1;
-  `,
-  double: css`
-    grid-column: span 2;
-  `,
-  triple: css`
-    grid-column: span 3;
-  `,
-};
-
 export const Grid = styled.div`
   display: grid;
-  flex-wrap: wrap;
-  grid-template-columns: repeat(2, 50%);
+  grid-template-columns: repeat(1, 50%);
   gap: 15px;
   padding: 0 25px 25px 0px;
 `;
@@ -109,8 +96,6 @@ export const Grid = styled.div`
 export const Part = styled.div`
   display: flex;
   flex-direction: column;
-
-  ${(props) => sizes[props.size || 'default']}
 
   strong {
     padding: 10px 0 10px 0;

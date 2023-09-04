@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { removeMedic } from '../../../store/modules/register/registerMedic/actions';
+
+import { removeSurgery } from '../../../store/modules/register/registerSurgery/actions';
 
 import Header from '../../../components/Barside';
 import DefaultLayout from '../../_layouts/default/index';
@@ -19,7 +20,7 @@ export function ListSurgery() {
   const dispatch = useDispatch();
 
   const [visible, setVisible] = useState(false);
-  const [doctors, setDoctor] = useState([]);
+  const [surgeries, setSurgery] = useState([]);
   // const [date, setDate] = useState(new Date());
 
   // const dateFormatted = useMemo(
@@ -28,21 +29,21 @@ export function ListSurgery() {
   // );
 
   useEffect(() => {
-    async function loadMedic() {
-      const response = await api.get('doctors');
+    async function loadSurgery() {
+      const response = await api.get('surgeries');
 
-      setDoctor(response.data);
+      setSurgery(response.data);
     }
 
-    loadMedic();
+    loadSurgery();
   }, []);
 
   const handleToggleVisible = () => {
     setVisible(!visible);
   };
 
-  const handleRemove = (doctor) => {
-    dispatch(removeMedic(doctor));
+  const handleRemove = (surgery) => {
+    dispatch(removeSurgery(surgery));
   };
 
   return (
@@ -50,19 +51,19 @@ export function ListSurgery() {
       <Header />
       <Container>
         <h2>Listagem</h2>
-        <span>Médico</span>
+        <span>Cirurgia</span>
         <Wrapper>
-          <Link to="/register/doctor"><button type="button">Cadastrar</button></Link>
-          {doctors.map((doctor) => (
+          <Link to="/register/surgery"><button type="button">Cadastrar</button></Link>
+          {surgeries.map((surgery) => (
             <List>
               <Badge onClick={handleToggleVisible}>
                 <Infor>
                   <li>🚀</li>
-                  <li>{doctor.name}</li>
+                  <li>{surgery.name}</li>
                   <li>31/08/2002</li>
                   <li>
-                    <Link to="/update/doctor"><img src={Edit} alt="Edit" /></Link>
-                    <button onClick={() => handleRemove(doctor.id)} type="button"><img src={Remove} alt="Remove" /></button>
+                    <Link to="/update/surgery"><img src={Edit} alt="Edit" /></Link>
+                    <button onClick={() => handleRemove(surgery.id)} type="button"><img src={Remove} alt="Remove" /></button>
                   </li>
                 </Infor>
               </Badge>
@@ -70,40 +71,20 @@ export function ListSurgery() {
                 <MoreInfor>
                   <Grid>
                     <Part size="double">
-                      <h3>Dados pessoais</h3>
+                      <h3>Informações</h3>
                     </Part>
                     <Part>
                       <strong>Nome</strong>
-                      <span>{doctor.name}</span>
-                    </Part>
-                    <Part>
-                      <strong>CPF</strong>
-                      <span>{doctor.cpf}</span>
-                    </Part>
-                    <Part>
-                      <strong>Nascimento</strong>
-                      <span>Nome</span>
-                    </Part>
-                    <Part>
-                      <strong>Endereço</strong>
-                      <span>{doctor.adress}</span>
-                    </Part>
-                    <Part>
-                      <strong>Gender</strong>
-                      <span>{doctor.gender}</span>
+                      <span>{surgery.name}</span>
                     </Part>
                   </Grid>
                   <Grid>
                     <Part size="double">
-                      <h3>Especialização</h3>
+                      <h3>Descrição</h3>
                     </Part>
                     <Part>
-                      <strong>CRM</strong>
-                      <span>{doctor.crm}</span>
-                    </Part>
-                    <Part>
-                      <strong>Especialidade</strong>
-                      <span>{doctor.speciality}</span>
+                      <strong>=================</strong>
+                      <span>{surgery.description}</span>
                     </Part>
                   </Grid>
                 </MoreInfor>

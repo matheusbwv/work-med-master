@@ -5,7 +5,7 @@ import {
 import { toast } from 'react-toastify';
 import api from '../../../../services/api';
 
-import { registerRoomInSuccess, registerFailure } from './actions';
+import { registerRoomInSuccess, registerFailure, removeFailure } from './actions';
 
 export function* registerRoom({ payload }) {
   try {
@@ -42,7 +42,22 @@ export function setToken({ payload }) {
   }
 }
 
+export function* removeRoom({
+  payload,
+}) {
+  try {
+    const { id } = payload;
+
+    toast.success('Excluído com Sucesso');
+    yield call(api.delete, `rooms/${id}`);
+  } catch (err) {
+    toast.error('Item já excluído');
+    yield put(removeFailure);
+  }
+}
+
 export default all([
   takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@register/REGISTERROOM_IN_REQUEST', registerRoom),
+  takeLatest('@remove/REMOVE_ROOM', removeRoom),
 ]);
