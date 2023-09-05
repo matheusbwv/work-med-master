@@ -12,6 +12,7 @@ class Patient extends Model {
         contact: Sequelize.STRING,
         expenses: Sequelize.FLOAT,
         status_post_operation: Sequelize.STRING,
+        created_at: Sequelize.DATE,
       },
       {
         sequelize,

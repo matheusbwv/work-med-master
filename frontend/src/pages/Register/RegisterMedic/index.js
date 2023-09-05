@@ -70,8 +70,9 @@ export default function RegisterMedic() {
               <strong>Endereço</strong>
               <Input name="adress" placeholder="Digite seu endereço..." />
             </InputWrapper>
-
-            <button type="submit">Submit</button>
+            <InputWrapper>
+              <button type="submit">Submit</button>
+            </InputWrapper>
 
           </Form>
         </Forms>

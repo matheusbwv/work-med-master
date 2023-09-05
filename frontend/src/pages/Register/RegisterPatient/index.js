@@ -24,11 +24,11 @@ export default function RegisterPatient() {
     cpf: Yup.string().required('Insira CPF'),
     adress: Yup.string().required('Insira um endereço'),
     contact: Yup.string().required('Insira seu contato'),
-    expenses: Yup.number(),
-    status_post_operation: Yup.string(),
-    doctor_id: Yup.number(),
-    room_id: Yup.number(),
-    surgery_id: Yup.number(),
+    expenses: Yup.number().required('Insira o valor gasto'),
+    status_post_operation: Yup.string().required('Insira o estado do paciente'),
+    doctor_id: Yup.number().required('Insira o médico responsável'),
+    room_id: Yup.number().required('Insira a sala utilizada'),
+    surgery_id: Yup.number().required('Insira o tipo de cirurgia'),
   });
 
   const dispatch = useDispatch();
@@ -62,86 +62,84 @@ export default function RegisterPatient() {
   };
 
   return (
-    <>
+    <DefaultLayout>
       <Header />
-      <DefaultLayout>
-        <Container>
-          <h2>Cadastro</h2>
-          <span>Paciente</span>
-          <Forms>
-            <Form schema={schema} onSubmit={handleSubmit}>
-              <InputWrapper size="double">
-                <strong>Nome</strong>
-                <Input name="name" placeholder="Digite seu nome..." />
-              </InputWrapper>
-              <InputWrapper>
-                <strong>Contato</strong>
-                <Input name="contact" placeholder="Número de celular..." />
-              </InputWrapper>
-              <InputWrapper>
-                <strong>Gênero</strong>
-                <Select
-                  name="gender"
-                  placeholder="Escolha"
-                  options={[{ title: 'Masculino' }, { title: 'Feminino' }]}
-                />
-              </InputWrapper>
-              <InputWrapper>
-                <strong>Médico</strong>
-                <Select
-                  name="doctor_id"
-                  placeholder="Escolha"
-                  options={doctors.map((doctor) => ({
-                    id: doctor.id,
-                    title: doctor.name,
-                  }))}
-                />
-              </InputWrapper>
-              <InputWrapper>
-                <strong>Sala Cirurgica</strong>
-                <Select
-                  name="room_id"
-                  placeholder="Escolha"
-                  options={rooms.map((room) => ({
-                    id: room.id,
-                    title: room.name,
-                  }))}
-                />
-              </InputWrapper>
-              <InputWrapper>
-                <strong>Tipo de cirurgia</strong>
-                <Select
-                  name="surgery_id"
-                  placeholder="Escolha"
-                  options={surgeries.map((surgery) => ({
-                    id: surgery.id,
-                    title: surgery.name,
-                  }))}
-                />
-              </InputWrapper>
-              <InputWrapper>
-                <strong>Histórico Médico</strong>
-                <Input name="medic_history" placeholder="Historico Médico..." />
-              </InputWrapper>
-              <InputWrapper>
-                <strong>CPF</strong>
-                <Input name="cpf" placeholder="Digite seu CPF" />
-              </InputWrapper>
-              <InputWrapper>
-                <strong>Endereço</strong>
-                <Input name="adress" placeholder="Digite seu endereço..." />
-              </InputWrapper>
-              <InputWrapper size="double">
-                <strong>Endereço</strong>
-                <Input name="expenses" placeholder="Valor gasto..." />
-              </InputWrapper>
-              <InputWrapper>
-                <button type="submit">Submit</button>
-              </InputWrapper>
-            </Form>
-          </Forms>
-        </Container>
-      </DefaultLayout>
-    </>
+      <Container>
+        <h2>Cadastro</h2>
+        <span>Paciente</span>
+        <Forms>
+          <Form schema={schema} onSubmit={handleSubmit}>
+            <InputWrapper>
+              <strong>Nome</strong>
+              <Input name="name" placeholder="Digite seu nome..." />
+            </InputWrapper>
+            <InputWrapper>
+              <strong>Contato</strong>
+              <Input name="contact" placeholder="Número de celular..." />
+            </InputWrapper>
+            <InputWrapper>
+              <strong>Gênero</strong>
+              <Select
+                name="gender"
+                placeholder="Escolha"
+                options={[{ title: 'Masculino' }, { title: 'Feminino' }]}
+              />
+            </InputWrapper>
+            <InputWrapper>
+              <strong>Médico</strong>
+              <Select
+                name="doctor_id"
+                placeholder="Escolha"
+                options={doctors.map((doctor) => ({
+                  id: doctor.id,
+                  title: doctor.name,
+                }))}
+              />
+            </InputWrapper>
+            <InputWrapper>
+              <strong>Sala Cirurgica</strong>
+              <Select
+                name="room_id"
+                placeholder="Escolha"
+                options={rooms.map((room) => ({
+                  id: room.id,
+                  title: room.name,
+                }))}
+              />
+            </InputWrapper>
+            <InputWrapper>
+              <strong>Tipo de cirurgia</strong>
+              <Select
+                name="surgery_id"
+                placeholder="Escolha"
+                options={surgeries.map((surgery) => ({
+                  id: surgery.id,
+                  title: surgery.name,
+                }))}
+              />
+            </InputWrapper>
+            <InputWrapper>
+              <strong>Histórico Médico</strong>
+              <Input name="medic_history" placeholder="Historico Médico..." />
+            </InputWrapper>
+            <InputWrapper>
+              <strong>CPF</strong>
+              <Input name="cpf" placeholder="Digite seu CPF" />
+            </InputWrapper>
+            <InputWrapper>
+              <strong>Endereço</strong>
+              <Input name="adress" placeholder="Digite seu endereço..." />
+            </InputWrapper>
+            <InputWrapper>
+              <strong>Endereço</strong>
+              <Input name="expenses" placeholder="Valor gasto..." />
+            </InputWrapper>
+            <InputWrapper>
+              <button type="submit">Submit</button>
+            </InputWrapper>
+          </Form>
+        </Forms>
+      </Container>
+    </DefaultLayout>
   );
 }

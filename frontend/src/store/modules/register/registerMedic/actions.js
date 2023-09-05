@@ -14,11 +14,11 @@ export function registerMedicInSuccess(token, doctor) {
   };
 }
 
-export function removeMedic(id) {
+export function removeMedic(id, navigate) {
   return {
     type: '@remove/REMOVE_MEDIC',
     payload: {
-      id,
+      id, navigate,
     },
   };
 }

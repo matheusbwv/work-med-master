@@ -76,10 +76,10 @@ export function ListMedic() {
                 <MoreInfor>
                   <Grid>
                     <Part size="double">
-                      <h3>Dados pessoais</h3>
+                      <h3>DADDOS PESSOAIS</h3>
                     </Part>
                     <Part>
-                      <strong>Nome</strong>
+                      <strong>NOME</strong>
                       <span>{doctor.name}</span>
                     </Part>
                     <Part>
@@ -87,28 +87,28 @@ export function ListMedic() {
                       <span>{doctor.cpf}</span>
                     </Part>
                     <Part>
-                      <strong>Nascimento</strong>
+                      <strong>NASCIMENTO</strong>
                       <span>Nome</span>
                     </Part>
                     <Part>
-                      <strong>Endereço</strong>
+                      <strong>ENDEREÇO</strong>
                       <span>{doctor.adress}</span>
                     </Part>
                     <Part>
-                      <strong>Gênero</strong>
+                      <strong>GÊNERO</strong>
                       <span>{doctor.gender}</span>
                     </Part>
                   </Grid>
                   <Grid>
                     <Part size="double">
-                      <h3>Especialização</h3>
+                      <h3>ESPECIALIZAÇÃO</h3>
                     </Part>
                     <Part>
                       <strong>CRM</strong>
                       <span>{doctor.crm}</span>
                     </Part>
                     <Part>
-                      <strong>Especialidade</strong>
+                      <strong>ESPECIALIDADE</strong>
                       <span>{doctor.speciality}</span>
                     </Part>
                   </Grid>

@@ -72,14 +72,14 @@ export function ListPatient() {
                   </li>
                 </Infor>
               </Badge>
-              <Visible visible={visible}>
+              <Visible visible={visible === i}>
                 <MoreInfor>
                   <Grid>
                     <Part size="double">
-                      <h3>Dados pessoais</h3>
+                      <h3>DADOS PESSOAIS</h3>
                     </Part>
                     <Part>
-                      <strong>Nome</strong>
+                      <strong>NOME</strong>
                       <span>{patient.name}</span>
                     </Part>
                     <Part>
@@ -87,25 +87,49 @@ export function ListPatient() {
                       <span>{patient.cpf}</span>
                     </Part>
                     <Part>
-                      <strong>Nascimento</strong>
+                      <strong>NASCIMENTO</strong>
                       <span>Nome</span>
                     </Part>
                     <Part>
-                      <strong>Endereço</strong>
+                      <strong>ENDEREÇO</strong>
                       <span>{patient.adress}</span>
                     </Part>
                     <Part>
-                      <strong>Gender</strong>
+                      <strong>GÊNERO</strong>
                       <span>{patient.gender}</span>
+                    </Part>
+                    <Part>
+                      <strong>HISTORICO MÉDICO</strong>
+                      <span>{patient.medic_history}</span>
                     </Part>
                   </Grid>
                   <Grid>
                     <Part size="double">
-                      <h3>Especialização</h3>
+                      <h3>PROCEDINENTOS</h3>
                     </Part>
                     <Part>
-                      <strong>CRM</strong>
-                      <span>{patient.crm}</span>
+                      <strong>DATA DA CIRURGIA</strong>
+                      <span>{patient.created_at}</span>
+                    </Part>
+                    <Part>
+                      <strong>TIPO DA CIRURGIA</strong>
+                      <span>{patient.Surgery.name}</span>
+                    </Part>
+                    <Part>
+                      <strong>PÓS OPERATÓRIO</strong>
+                      <span>{patient.status_post_operation}</span>
+                    </Part>
+                    <Part>
+                      <strong>SALA</strong>
+                      <span>{`${patient.Room.floor} - Sala ${patient.Room.number}`}</span>
+                    </Part>
+                    <Part>
+                      <strong>MÉDICO RESPONSÁVEL</strong>
+                      <span>{patient.Doctor.name}</span>
+                    </Part>
+                    <Part>
+                      <strong>TOTAL GASTO</strong>
+                      <span>{patient.expenses}</span>
                     </Part>
                   </Grid>
                 </MoreInfor>

@@ -5,12 +5,12 @@ export const Container = styled.div`
   flex: 1;
 
   h2 {
-    font-size: 28px;
+    font-size: 26px;
     padding-bottom: 5px;
   }
 
   span {
-    font-size: 14px;
+    font-size: 12px;
     color: #A4A4A4;
     opacity: 0.8;
   }
@@ -24,8 +24,13 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: end;
-  width: 60%;
+  width: 65%;
   margin: 30px auto;
+  overflow-y:auto;
+  overflow-x:hidden ;
+  height:auto;
+  max-height: 75vh;
+
 
   a {
     button {
@@ -102,7 +107,7 @@ export const Grid = styled.div`
   display: grid;
   flex-wrap: wrap;
   grid-template-columns: repeat(2, 50%);
-  gap: 15px;
+  gap: 10px;
   padding: 0 25px 25px 0px;
 `;
 

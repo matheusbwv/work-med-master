@@ -9,7 +9,7 @@ class PatientController {
     const { page = 1 } = req.body;
     const patient = await Patient.findAll({
       order: ['created_at'],
-      attributes: ['id', 'expenses', 'status_post_operation', 'name', 'cpf', 'gender', 'adress', 'medic_history', 'contact'],
+      attributes: ['id', 'expenses', 'status_post_operation', 'name', 'cpf', 'gender', 'adress', 'medic_history', 'contact', 'created_at'],
       limit: 20,
       offset: (page - 1) * 20,
       include: [

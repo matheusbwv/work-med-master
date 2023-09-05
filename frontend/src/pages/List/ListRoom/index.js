@@ -71,23 +71,23 @@ export function ListRoom() {
                 <MoreInfor>
                   <Grid>
                     <Part>
-                      <h3>Informações</h3>
+                      <h3>INFORMAÇÕES</h3>
                     </Part>
                     <Part>
-                      <strong>Número</strong>
+                      <strong>NÚMERO</strong>
                       <span>{room.number}</span>
                     </Part>
                     <Part>
-                      <strong>Localização</strong>
+                      <strong>LOCALIZAÇÃO</strong>
                       <span>{`Sala ${room.number} no ${room.floor}`}</span>
                     </Part>
                   </Grid>
                   <Grid>
                     <Part>
-                      <h3>Especificações</h3>
+                      <h3>ESPECIFICAÇÕES</h3>
                     </Part>
                     <Part>
-                      <strong>Descrição</strong>
+                      <strong>DESCRIÇÃO</strong>
                       <span>{room.name}</span>
                     </Part>
                   </Grid>
