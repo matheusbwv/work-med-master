@@ -73,7 +73,6 @@ export default function RegisterMedic() {
             <InputWrapper>
               <button type="submit">Submit</button>
             </InputWrapper>
-
           </Form>
         </Forms>
       </Container>

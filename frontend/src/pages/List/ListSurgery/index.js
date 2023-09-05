@@ -19,7 +19,7 @@ import api from '../../../services/api';
 export function ListSurgery() {
   const dispatch = useDispatch();
 
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(null);
   const [surgeries, setSurgery] = useState([]);
   // const [date, setDate] = useState(new Date());
 
@@ -38,8 +38,12 @@ export function ListSurgery() {
     loadSurgery();
   }, []);
 
-  const handleToggleVisible = () => {
-    setVisible(!visible);
+  const handleToggleVisible = (index) => {
+    if (visible === index) {
+      return setVisible(null);
+    }
+
+    return setVisible(index);
   };
 
   const handleRemove = (surgery) => {
@@ -54,9 +58,11 @@ export function ListSurgery() {
         <span>Cirurgia</span>
         <Wrapper>
           <Link to="/register/surgery"><button type="button">Cadastrar</button></Link>
-          {surgeries.map((surgery) => (
+          {surgeries.map((surgery, i) => (
             <List key={surgery.id}>
-              <Badge onClick={handleToggleVisible}>
+              <Badge onClick={() => (Number(visible)
+                ? handleToggleVisible(null) : handleToggleVisible(i))}
+              >
                 <Infor>
                   <li>🚀</li>
                   <li>{surgery.name}</li>
@@ -67,7 +73,7 @@ export function ListSurgery() {
                   </li>
                 </Infor>
               </Badge>
-              <Visible visible={visible}>
+              <Visible visible={visible === i}>
                 <MoreInfor>
                   <Grid>
                     <Part size="double">

@@ -19,7 +19,7 @@ import api from '../../../services/api';
 export function ListRoom() {
   const dispatch = useDispatch();
 
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(null);
   const [rooms, setRoom] = useState([]);
   // const [date, setDate] = useState(new Date());
 
@@ -38,8 +38,12 @@ export function ListRoom() {
     loadRoom();
   }, []);
 
-  const handleToggleVisible = () => {
-    setVisible(!visible);
+  const handleToggleVisible = (index) => {
+    if (visible === index) {
+      return setVisible(null);
+    }
+
+    return setVisible(index);
   };
 
   const handleRemove = (room) => {
@@ -54,9 +58,11 @@ export function ListRoom() {
         <span>Sala</span>
         <Wrapper>
           <Link to="/register/room"><button type="button">Cadastrar</button></Link>
-          {rooms.map((room) => (
+          {rooms.map((room, i) => (
             <List key={room.id}>
-              <Badge onClick={handleToggleVisible}>
+              <Badge onClick={() => (Number(visible)
+                ? handleToggleVisible(null) : handleToggleVisible(i))}
+              >
                 <Infor>
                   <li>🚀</li>
                   <li>{`SALA - ${room.number}`}</li>
@@ -67,7 +73,7 @@ export function ListRoom() {
                   </li>
                 </Infor>
               </Badge>
-              <Visible visible={visible}>
+              <Visible visible={visible === i}>
                 <MoreInfor>
                   <Grid>
                     <Part>

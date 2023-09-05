@@ -36,7 +36,7 @@ export function* removePatient({
     yield call(api.delete, `patients/${id}`);
   } catch (err) {
     toast.error('Item já excluído');
-    yield put(removeFailure);
+    yield put(removeFailure());
   }
 }
 

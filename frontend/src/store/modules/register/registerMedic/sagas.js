@@ -45,7 +45,7 @@ export function* removeMedic({
     yield call(api.delete, `doctors/${id}`);
   } catch (err) {
     toast.error('Item já excluído');
-    yield put(removeFailure);
+    yield put(removeFailure());
   }
 }
 

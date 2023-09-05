@@ -38,6 +38,10 @@ export const InputWrapper = styled.div`
 `;
 
 export const Forms = styled.div`
+  overflow-y:auto;
+  overflow-x:hidden ;
+  height:auto;
+  max-height: 75vh;
   form {
     display: grid;
     grid-template-columns: repeat(2, 50%);

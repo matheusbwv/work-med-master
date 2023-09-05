@@ -9,6 +9,7 @@ import * as Yup from 'yup';
 import api from '../../../services/api';
 
 import { registerPatientInRequest } from '../../../store/modules/register/registerPatient/actions';
+
 import {
   Container, Forms, InputWrapper,
 } from './styles';
@@ -25,7 +26,7 @@ export default function RegisterPatient() {
     adress: Yup.string().required('Insira um endereço'),
     contact: Yup.string().required('Insira seu contato'),
     expenses: Yup.number().required('Insira o valor gasto'),
-    status_post_operation: Yup.string().required('Insira o estado do paciente'),
+    status_post_operation: Yup.string(),
     doctor_id: Yup.number().required('Insira o médico responsável'),
     room_id: Yup.number().required('Insira a sala utilizada'),
     surgery_id: Yup.number().required('Insira o tipo de cirurgia'),
@@ -133,6 +134,10 @@ export default function RegisterPatient() {
             <InputWrapper>
               <strong>Endereço</strong>
               <Input name="expenses" placeholder="Valor gasto..." />
+            </InputWrapper>
+            <InputWrapper size="double">
+              <strong>Pós operatório</strong>
+              <Input name="status_post_operation" placeholder="Pós operatório" />
             </InputWrapper>
             <InputWrapper>
               <button type="submit">Submit</button>
