@@ -18,6 +18,21 @@ export function registerPatientInSuccess(token, patient) {
   };
 }
 
+export function removePatient(id, navigate) {
+  return {
+    type: '@remove/REMOVE_PATIENT',
+    payload: {
+      id, navigate,
+    },
+  };
+}
+
+export function removeFailure() {
+  return {
+    type: '@remove/REMOVE_PATIENT',
+  };
+}
+
 export function registerFailure() {
   return {
     type: '@register/REGISTER_FAILURE',

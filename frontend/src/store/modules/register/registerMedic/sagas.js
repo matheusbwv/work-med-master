@@ -39,12 +39,10 @@ export function* removeMedic({
   payload,
 }) {
   try {
-    const { id, navigate } = payload;
+    const { id } = payload;
 
     toast.success('Excluído com Sucesso');
     yield call(api.delete, `doctors/${id}`);
-
-    navigate('/list/doctor');
   } catch (err) {
     toast.error('Item já excluído');
     yield put(removeFailure);

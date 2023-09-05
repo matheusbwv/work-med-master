@@ -5,7 +5,7 @@ import {
 import { toast } from 'react-toastify';
 import api from '../../../../services/api';
 
-import { registerPatientInSuccess, registerFailure } from './actions';
+import { registerPatientInSuccess, registerFailure, removeFailure } from './actions';
 
 export function* registerPatient({ payload }) {
   try {
@@ -26,6 +26,20 @@ export function* registerPatient({ payload }) {
   }
 }
 
+export function* removePatient({
+  payload,
+}) {
+  try {
+    const { id } = payload;
+
+    toast.success('Excluído com Sucesso');
+    yield call(api.delete, `patients/${id}`);
+  } catch (err) {
+    toast.error('Item já excluído');
+    yield put(removeFailure);
+  }
+}
+
 export function setToken({ payload }) {
   if (!payload) return;
 
@@ -39,4 +53,5 @@ export function setToken({ payload }) {
 export default all([
   takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@register/REGISTERPATIENT_IN_REQUEST', registerPatient),
+  takeLatest('@remove/REMOVE_PATIENT', removePatient),
 ]);

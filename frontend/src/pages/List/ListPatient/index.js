@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { removeMedic } from '../../../store/modules/register/registerMedic/actions';
+import { removePatient } from '../../../store/modules/register/registerPatient/actions';
 
 import Header from '../../../components/Barside';
 import DefaultLayout from '../../_layouts/default/index';
@@ -46,7 +46,7 @@ export function ListPatient() {
   };
 
   const handleRemove = (patient) => {
-    dispatch(removeMedic(patient));
+    dispatch(removePatient(patient));
   };
 
   return (
@@ -113,7 +113,7 @@ export function ListPatient() {
                     </Part>
                     <Part>
                       <strong>TIPO DA CIRURGIA</strong>
-                      <span>{patient.Surgery.name}</span>
+                      <span>{patient.Surgery?.name}</span>
                     </Part>
                     <Part>
                       <strong>PÓS OPERATÓRIO</strong>
@@ -121,11 +121,11 @@ export function ListPatient() {
                     </Part>
                     <Part>
                       <strong>SALA</strong>
-                      <span>{`${patient.Room.floor} - Sala ${patient.Room.number}`}</span>
+                      <span>{`${patient.Room?.floor} - Sala ${patient.Room?.number}`}</span>
                     </Part>
                     <Part>
                       <strong>MÉDICO RESPONSÁVEL</strong>
-                      <span>{patient.Doctor.name}</span>
+                      <span>{patient.Doctor?.name}</span>
                     </Part>
                     <Part>
                       <strong>TOTAL GASTO</strong>
