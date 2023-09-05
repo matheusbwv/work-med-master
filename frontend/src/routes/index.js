@@ -18,6 +18,10 @@ import { ListMedic } from '../pages/List/ListMedic';
 import { ListPatient } from '../pages/List/ListPatient';
 import { ListRoom } from '../pages/List/ListRoom';
 import { ListSurgery } from '../pages/List/ListSurgery';
+import { UpdateMedic } from '../pages/Update/UpdateMedic';
+import { UpdatePatient } from '../pages/Update/UpdatePatient';
+import { UpdateRoom } from '../pages/Update/UpdateRoom';
+import { UpdateSurgery } from '../pages/Update/UpdateSurgery';
 
 function Router() {
   return (
@@ -40,6 +44,10 @@ function Router() {
         <Route path="/list/patient" element={<ListPatient />} />
         <Route path="/list/room" element={<ListRoom />} />
         <Route path="/list/surgery" element={<ListSurgery />} />
+        <Route path="/update/doctor" element={<UpdateMedic />} />
+        <Route path="/update/patient" element={<UpdatePatient />} />
+        <Route path="/update/room" element={<UpdateRoom />} />
+        <Route path="/update/surgery" element={<UpdateSurgery />} />
 
       </Route>
     </Routes>
