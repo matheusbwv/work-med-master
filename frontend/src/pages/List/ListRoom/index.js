@@ -55,7 +55,7 @@ export function ListRoom() {
         <Wrapper>
           <Link to="/register/room"><button type="button">Cadastrar</button></Link>
           {rooms.map((room) => (
-            <List>
+            <List key={room.id}>
               <Badge onClick={handleToggleVisible}>
                 <Infor>
                   <li>🚀</li>

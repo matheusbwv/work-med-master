@@ -10,6 +10,8 @@ class Patient extends Model {
         adress: Sequelize.STRING,
         medic_history: Sequelize.STRING,
         contact: Sequelize.STRING,
+        expenses: Sequelize.FLOAT,
+        status_post_operation: Sequelize.STRING,
       },
       {
         sequelize,
@@ -17,6 +19,12 @@ class Patient extends Model {
     );
 
     return this;
+  }
+
+  static associate(models) {
+    this.belongsTo(models.Doctor, { foreignKey: 'doctor_id' });
+    this.belongsTo(models.Room, { foreignKey: 'room_id' });
+    this.belongsTo(models.Surgery, { foreignKey: 'surgery_id' });
   }
 }
 

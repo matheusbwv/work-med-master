@@ -25,7 +25,11 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: end;
   width: 60%;
-  margin: 30px auto;
+  margin: 20px auto;
+  overflow-y:auto;
+  overflow-x:hidden ;
+  height:auto;
+  max-height: 75vh;
 
   a {
     button {

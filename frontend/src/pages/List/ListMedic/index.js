@@ -18,7 +18,7 @@ import api from '../../../services/api';
 export function ListMedic() {
   const dispatch = useDispatch();
 
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(null);
   const [doctors, setDoctor] = useState([]);
   // const [date, setDate] = useState(new Date());
 
@@ -37,8 +37,12 @@ export function ListMedic() {
     loadMedic();
   }, []);
 
-  const handleToggleVisible = () => {
-    setVisible(!visible);
+  const handleToggleVisible = (index) => {
+    if (visible === index) {
+      return setVisible(null);
+    }
+
+    return setVisible(index);
   };
 
   const handleRemove = (doctor) => {
@@ -53,9 +57,11 @@ export function ListMedic() {
         <span>Médico</span>
         <Wrapper>
           <Link to="/register/doctor"><button type="button">Cadastrar</button></Link>
-          {doctors.map((doctor) => (
-            <List>
-              <Badge onClick={handleToggleVisible}>
+          {doctors.map((doctor, i) => (
+            <List key={doctor.id}>
+              <Badge onClick={() => (Number(visible)
+                ? handleToggleVisible(null) : handleToggleVisible(i))}
+              >
                 <Infor>
                   <li>🚀</li>
                   <li>{doctor.name}</li>
@@ -66,7 +72,7 @@ export function ListMedic() {
                   </li>
                 </Infor>
               </Badge>
-              <Visible visible={visible}>
+              <Visible visible={visible === i}>
                 <MoreInfor>
                   <Grid>
                     <Part size="double">
@@ -89,7 +95,7 @@ export function ListMedic() {
                       <span>{doctor.adress}</span>
                     </Part>
                     <Part>
-                      <strong>Gender</strong>
+                      <strong>Gênero</strong>
                       <span>{doctor.gender}</span>
                     </Part>
                   </Grid>

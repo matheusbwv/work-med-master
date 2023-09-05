@@ -1,16 +1,12 @@
 export function registerPatientInRequest(
-  name,
-  gender,
-  medic_history,
-  contact,
-  cpf,
-  adress,
+  formData,
   navigate,
 ) {
   return {
     type: '@register/REGISTERPATIENT_IN_REQUEST',
     payload: {
-      name, gender, medic_history, contact, cpf, adress, navigate,
+      formData,
+      navigate,
     },
   };
 }

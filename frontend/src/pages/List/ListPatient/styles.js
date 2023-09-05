@@ -26,6 +26,9 @@ export const Wrapper = styled.div`
   align-items: end;
   width: 60%;
   margin: 30px auto;
+  overflow-y:auto;
+  height:auto;
+  max-height: 75vh;
 
   a {
     button {

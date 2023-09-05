@@ -39,6 +39,11 @@ class PatientController {
       adress: Yup.string(),
       medic_history: Yup.string(),
       contact: Yup.string(),
+      expenses: Yup.number(),
+      status_post_operation: Yup.string(),
+      doctor: Yup.number(),
+      surgery: Yup.number(),
+      room: Yup.number(),
     });
 
     if (!(await schema.validate(req.body, { abortEarly: false }))) {
@@ -57,6 +62,7 @@ class PatientController {
       name, cpf, gender,
       adress, medic_history,
       contact, expenses, status_post_operation,
+      doctor_id, room_id, surgery_id,
     } = await Patient.create(req.body);
 
     return res.json({
@@ -69,6 +75,9 @@ class PatientController {
       contact,
       expenses,
       status_post_operation,
+      doctor_id,
+      room_id,
+      surgery_id,
     });
   }
 

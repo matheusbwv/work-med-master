@@ -55,7 +55,7 @@ export function ListSurgery() {
         <Wrapper>
           <Link to="/register/surgery"><button type="button">Cadastrar</button></Link>
           {surgeries.map((surgery) => (
-            <List>
+            <List key={surgery.id}>
               <Badge onClick={handleToggleVisible}>
                 <Infor>
                   <li>🚀</li>

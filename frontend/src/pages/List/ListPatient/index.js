@@ -18,7 +18,7 @@ import api from '../../../services/api';
 export function ListPatient() {
   const dispatch = useDispatch();
 
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(null);
   const [patients, setPatient] = useState([]);
   // const [date, setDate] = useState(new Date());
 
@@ -37,8 +37,12 @@ export function ListPatient() {
     loadMedic();
   }, []);
 
-  const handleToggleVisible = () => {
-    setVisible(!visible);
+  const handleToggleVisible = (index) => {
+    if (visible === index) {
+      return setVisible(null);
+    }
+
+    return setVisible(index);
   };
 
   const handleRemove = (patient) => {
@@ -53,9 +57,11 @@ export function ListPatient() {
         <span>Paciente</span>
         <Wrapper>
           <Link to="/register/patient"><button type="button">Cadastrar</button></Link>
-          {patients.map((patient) => (
-            <List>
-              <Badge onClick={handleToggleVisible}>
+          {patients.map((patient, i) => (
+            <List key={patient.id}>
+              <Badge onClick={() => (Number(visible)
+                ? handleToggleVisible(null) : handleToggleVisible(i))}
+              >
                 <Infor>
                   <li>🚀</li>
                   <li>{patient.name}</li>
@@ -100,10 +106,6 @@ export function ListPatient() {
                     <Part>
                       <strong>CRM</strong>
                       <span>{patient.crm}</span>
-                    </Part>
-                    <Part>
-                      <strong>Especialidade</strong>
-                      <span>{patient.speciality}</span>
                     </Part>
                   </Grid>
                 </MoreInfor>

@@ -16,7 +16,7 @@ export default function Register() {
       <Barside />
       <Container>
         <Title>
-          <h2>Register</h2>
+          <h2>Cadastrar</h2>
           <span>Escolha qual item deseja cadastrar</span>
         </Title>
         <Ficture>

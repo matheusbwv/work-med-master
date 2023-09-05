@@ -31,7 +31,7 @@ export default function RegisterMedic() {
   const handleSubmit = ({
     name, speciality, gender, crm, cpf, adress,
   }) => {
-    dispatch(registerMedicInRequest(name, speciality, gender, crm, cpf, adress, navigate));
+    dispatch(registerMedicInRequest(name, gender, speciality, crm, cpf, adress, navigate));
   };
 
   return (
@@ -55,7 +55,7 @@ export default function RegisterMedic() {
               <Select
                 name="gender"
                 placeholder="Escolha"
-                options={[{ title: 'Masculino' }, { title: 'Feminino' }]}
+                options={[{ title: 'Masculino', value: 'Masculino' }, { title: 'Feminino', value: 'Feminino' }]}
               />
             </InputWrapper>
             <InputWrapper>

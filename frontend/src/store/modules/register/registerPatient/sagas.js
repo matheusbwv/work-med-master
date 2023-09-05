@@ -9,18 +9,9 @@ import { registerPatientInSuccess, registerFailure } from './actions';
 
 export function* registerPatient({ payload }) {
   try {
-    const {
-      name, gender, medic_history, contact, cpf, adress, navigate,
-    } = payload;
+    const { navigate } = payload;
 
-    const response = yield call(api.post, 'patients', {
-      name,
-      medic_history,
-      gender,
-      contact,
-      cpf,
-      adress,
-    });
+    const response = yield call(api.post, 'patients', payload.formData);
 
     const { token, patient } = response.data;
 

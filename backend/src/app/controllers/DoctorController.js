@@ -40,6 +40,8 @@ class DoctorController {
       return res.status(400).json({ error: 'CRM or CPF alredy existis' });
     }
 
+    console.log(req.body);
+
     const {
       id, name,
       speciality,
