@@ -5,7 +5,9 @@ import {
 import { toast } from 'react-toastify';
 import api from '../../../../services/api';
 
-import { registerMedicInSuccess, registerFailure, removeFailure } from './actions';
+import {
+  registerMedicInSuccess, registerFailure, removeFailure,
+} from './actions';
 
 export function* registerMedic({ payload }) {
   try {
@@ -22,11 +24,11 @@ export function* registerMedic({ payload }) {
       adress,
     });
 
-    const { token, doctor } = response.data;
+    const doctor = response.data;
 
-    api.defaults.headers.common.Authorization = `Bearer ${token}`;
+    // api.defaults.headers.Authorization = `Bearer ${token}`;
 
-    yield put(registerMedicInSuccess(token, doctor));
+    yield put(registerMedicInSuccess(doctor));
 
     navigate('/list/doctor');
   } catch (err) {
@@ -34,6 +36,31 @@ export function* registerMedic({ payload }) {
     yield put(registerFailure());
   }
 }
+
+// export function* updateMedic({ payload }) {
+//   try {
+//     const {
+//       id, ...rest
+//     } = payload.data;
+
+//     console.log(payload.data);
+
+//     const doctor = { ...rest };
+
+//     console.log(doctor);
+
+//     const response = yield call(api.put, `doctors/${id}`, doctor);
+
+//     console.log(response.data);
+
+//     toast.success('Médico atualizado com sucesso!');
+
+//     yield put(updateMedicSuccess(response.data));
+//   } catch (err) {
+//     toast.error('Erro a atualizar médico, verifique seus dados!');
+//     yield put(updateMedicFailure);
+//   }
+// }
 
 export function* removeMedic({
   payload,
@@ -61,6 +88,7 @@ export function setToken({ payload }) {
 
 export default all([
   takeLatest('persist/REHYDRATE', setToken),
-  takeLatest('@register/REGISTERMEDIC_IN_REQUEST', registerMedic),
-  takeLatest('@remove/REMOVE_MEDIC', removeMedic),
+  takeLatest('@medic/REGISTERMEDIC_IN_REQUEST', registerMedic),
+  takeLatest('@medic/REMOVE_MEDIC', removeMedic),
+  // takeLatest('@medic/UPDATE_MEDIC_REQUEST', updateMedic),
 ]);

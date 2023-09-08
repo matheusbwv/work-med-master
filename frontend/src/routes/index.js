@@ -18,7 +18,7 @@ import { ListMedic } from '../pages/List/ListMedic';
 import { ListPatient } from '../pages/List/ListPatient';
 import { ListRoom } from '../pages/List/ListRoom';
 import { ListSurgery } from '../pages/List/ListSurgery';
-import { UpdateMedic } from '../pages/Update/UpdateMedic';
+import UpdateMedic from '../pages/Update/UpdateMedic';
 import { UpdatePatient } from '../pages/Update/UpdatePatient';
 import { UpdateRoom } from '../pages/Update/UpdateRoom';
 import { UpdateSurgery } from '../pages/Update/UpdateSurgery';
