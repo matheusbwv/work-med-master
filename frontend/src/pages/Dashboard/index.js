@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import DefaultLayout from '../_layouts/default';
 
@@ -14,10 +15,10 @@ function Dashboard() {
         <div className="container py-3 col-9">
           <div className="d-flex justify-content-between align-items-center">
             <h5>Dashboard</h5>
-            <div className="d-flex align-items-center">
+            <Link to="/profile" className="d-flex align-items-center">
               <p className="pt-4">Carla Belize</p>
               <img className="" src="" alt="" />
-            </div>
+            </Link>
           </div>
           <p className="lh-1">Seja bem vinda, Carla Belize</p>
         </div>
