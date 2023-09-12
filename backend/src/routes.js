@@ -45,5 +45,6 @@ routes.put('/procedures/:id', ProcedureController.update);
 routes.delete('/procedures/:id', ProcedureController.delete);
 
 routes.put('/users', UserController.update);
+routes.get('/users', UserController.index);
 
 export default routes;
