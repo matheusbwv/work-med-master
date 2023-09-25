@@ -7,6 +7,7 @@ import api from '../../../../services/api';
 
 import {
   registerMedicInSuccess, registerFailure, removeFailure,
+  updateMedicSuccess, updateMedicFailure,
 } from './actions';
 
 export function* registerMedic({ payload }) {
@@ -37,30 +38,30 @@ export function* registerMedic({ payload }) {
   }
 }
 
-// export function* updateMedic({ payload }) {
-//   try {
-//     const {
-//       id, ...rest
-//     } = payload.data;
+export function* updateMedic({ payload }) {
+  try {
+    const {
+      id, name, gender, speciality, crm, cpf, adress, navigate,
+    } = payload;
 
-//     console.log(payload.data);
+    const doctor = {
+      name, gender, speciality, crm, cpf, adress,
+    };
 
-//     const doctor = { ...rest };
+    console.log(payload);
 
-//     console.log(doctor);
+    const response = yield call(api.put, `doctors/${id}`, doctor);
 
-//     const response = yield call(api.put, `doctors/${id}`, doctor);
+    toast.success('Médico atualizado com sucesso!');
 
-//     console.log(response.data);
+    navigate('/doctor/list');
 
-//     toast.success('Médico atualizado com sucesso!');
-
-//     yield put(updateMedicSuccess(response.data));
-//   } catch (err) {
-//     toast.error('Erro a atualizar médico, verifique seus dados!');
-//     yield put(updateMedicFailure);
-//   }
-// }
+    yield put(updateMedicSuccess(response.data));
+  } catch (err) {
+    toast.error('Erro a atualizar médico, verifique seus dados!');
+    yield put(updateMedicFailure);
+  }
+}
 
 export function* removeMedic({
   payload,
@@ -90,5 +91,5 @@ export default all([
   takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@medic/REGISTERMEDIC_IN_REQUEST', registerMedic),
   takeLatest('@medic/REMOVE_MEDIC', removeMedic),
-  // takeLatest('@medic/UPDATE_MEDIC_REQUEST', updateMedic),
+  takeLatest('@medic/UPDATE_MEDIC_REQUEST', updateMedic),
 ]);

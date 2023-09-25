@@ -61,12 +61,11 @@ class DoctorController {
   async update(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string(),
-      cpf: Yup.number().integer().min(11).nullable()
-        .notRequired(),
-      gender: Yup.string().nullable().notRequired(),
-      adress: Yup.string().nullable().notRequired(),
-      speciality: Yup.string().nullable().notRequired(),
-      crm: Yup.string().min(8).nullable().notRequired(),
+      cpf: Yup.number().integer().min(11).nullable(),
+      gender: Yup.string().nullable(),
+      adress: Yup.string().nullable(),
+      speciality: Yup.string().nullable(),
+      crm: Yup.string().min(8).nullable(),
     });
 
     if (!(await schema.isValid(req.body, { abortEarly: false }))) {
@@ -79,7 +78,7 @@ class DoctorController {
 
     const {
       name, cpf, gender, adress, speciality, crm,
-    } = Doctor.findByPk(req.params.id);
+    } = await Doctor.findByPk(req.params.id);
 
     return res.json({
       name,

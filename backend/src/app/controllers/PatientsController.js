@@ -97,11 +97,24 @@ class PatientController {
 
     const patient = await Patient.findByPk(req.params.id);
 
+    const { contact } = req.body;
+
+    const user = await Patient.findByPk(req.userId);
+
+    if (contact !== user.contact) {
+      const contactExists = await Patient.findOne({ where: { contact } });
+
+      if (contactExists) {
+        return res.status(400).json({ error: 'Contact already exists' });
+      }
+    }
+
     patient.update({
       name: req.body.name,
       cpf: req.body.cpf,
       gender: req.body.gender,
       adress: req.body.adress,
+      expenses: req.body.expenses,
       medic_history: req.body.medic_history,
       contact: req.body.contact,
     });

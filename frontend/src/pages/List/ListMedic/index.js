@@ -67,7 +67,7 @@ export function ListMedic() {
                   <li>{doctor.name}</li>
                   <li>31/08/2002</li>
                   <li>
-                    <Link to="/update/doctor"><img src={Edit} alt="Edit" /></Link>
+                    <Link to={`/update/doctor/${doctor.id}`}><img src={Edit} alt="Edit" /></Link>
                     <button onClick={() => handleRemove(doctor.id)} type="button"><img src={Remove} alt="Remove" /></button>
                   </li>
                 </Infor>

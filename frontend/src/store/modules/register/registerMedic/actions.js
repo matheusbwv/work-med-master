@@ -14,25 +14,27 @@ export function registerMedicInSuccess(doctor) {
   };
 }
 
-// export function updateMedicRequest(id, data) {
-//   return {
-//     type: '@medic/UPDATE_MEDIC_REQUEST',
-//     payload: { id, data },
-//   };
-// }
+export function updateMedicRequest(id, name, gender, speciality, crm, cpf, adress, navigate) {
+  return {
+    type: '@medic/UPDATE_MEDIC_REQUEST',
+    payload: {
+      id, name, gender, speciality, crm, cpf, adress, navigate,
+    },
+  };
+}
 
-// export function updateMedicSuccess(newDoctor) {
-//   return {
-//     type: '@medic/UPDATE_MEDIC_SUCCESS',
-//     payload: { newDoctor },
-//   };
-// }
+export function updateMedicSuccess(doctor) {
+  return {
+    type: '@medic/UPDATE_MEDIC_SUCCESS',
+    payload: { doctor },
+  };
+}
 
-// export function updateMedicFailure() {
-//   return {
-//     type: '@medic/UPDATE_MEDIC_REQUEST',
-//   };
-// }
+export function updateMedicFailure() {
+  return {
+    type: '@medic/UPDATE_MEDIC_REQUEST',
+  };
+}
 
 export function removeMedic(id) {
   return {
