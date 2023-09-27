@@ -33,17 +33,17 @@ export default function UpdateMedic() {
   const handleSubmit = (
     data,
   ) => {
-    dispatch(updateMedicRequest({ ...data }));
+    dispatch(updateMedicRequest(data));
   };
 
   return (
     <DefaultLayout>
       <Header />
-      <Container>
+      <Container schema={schema}>
         <h2>Atualizar</h2>
         <span>Médico</span>
         <Forms>
-          <Form schema={schema} onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}>
             <InputWrapper size="double">
               <strong>Nome</strong>
               <Input name="name" placeholder="Digite seu nome..." />

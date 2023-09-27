@@ -41,7 +41,7 @@ export function* registerMedic({ payload }) {
 export function* updateMedic({ payload }) {
   try {
     const {
-      id, name, gender, speciality, crm, cpf, adress, navigate,
+      name, gender, speciality, crm, cpf, adress, navigate,
     } = payload;
 
     const doctor = {
@@ -50,7 +50,7 @@ export function* updateMedic({ payload }) {
 
     console.log(payload);
 
-    const response = yield call(api.put, `doctors/${id}`, doctor);
+    const response = yield call(api.put, 'doctors', doctor);
 
     toast.success('Médico atualizado com sucesso!');
 

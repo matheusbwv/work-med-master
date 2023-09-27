@@ -14,11 +14,11 @@ export function registerMedicInSuccess(doctor) {
   };
 }
 
-export function updateMedicRequest(id, name, gender, speciality, crm, cpf, adress, navigate) {
+export function updateMedicRequest(data) {
   return {
     type: '@medic/UPDATE_MEDIC_REQUEST',
     payload: {
-      id, name, gender, speciality, crm, cpf, adress, navigate,
+      data,
     },
   };
 }

@@ -7,7 +7,6 @@ import PatientsController from './app/controllers/PatientsController';
 import DoctorController from './app/controllers/DoctorController';
 import RoomController from './app/controllers/RoomController';
 import RoleController from './app/controllers/RoleController';
-import ProcedureController from './app/controllers/ProcedureController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -38,11 +37,6 @@ routes.post('/rooms', RoomController.store);
 routes.get('/rooms', RoomController.index);
 routes.put('/rooms/:id', RoomController.update);
 routes.delete('/rooms/:id', RoomController.delete);
-
-routes.post('/procedures', ProcedureController.store);
-routes.get('/procedures', ProcedureController.index);
-routes.put('/procedures/:id', ProcedureController.update);
-routes.delete('/procedures/:id', ProcedureController.delete);
 
 routes.put('/users', UserController.update);
 routes.get('/users', UserController.index);

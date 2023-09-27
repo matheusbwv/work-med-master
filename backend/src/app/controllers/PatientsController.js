@@ -84,11 +84,13 @@ class PatientController {
   async update(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
-      cpf: Yup.number().integer().min(11),
+      cpf: Yup.string(),
       gender: Yup.string(),
       adress: Yup.string(),
       medic_history: Yup.string(),
-      contact: Yup.number().min(10),
+      contact: Yup.string(),
+      expenses: Yup.number(),
+      status_post_operation: Yup.string(),
     });
 
     if (!(await schema.isValid(req.body, { abortEarly: false }))) {
@@ -117,6 +119,7 @@ class PatientController {
       expenses: req.body.expenses,
       medic_history: req.body.medic_history,
       contact: req.body.contact,
+      status_post_operation: req.body.status_post_operation,
     });
 
     return res.json(patient);
