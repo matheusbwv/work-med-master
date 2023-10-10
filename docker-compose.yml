@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  data-base:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5434:5434"
+
+  backend:
+    image: node:18-slim
+    container_name: api
+    working_dir: /home/node/app
+    volumes:
+      - ./backend:/home/node/app
+    depends_on:
+      - data-base
+    ports:
+      - "5435:5435"
+    command: yarn dev
+
+  frontend:
+    image: node:18-slim
+    container_name: web
+    working_dir: /home/node/app
+    volumes:
+      - ./sua_pasta_do_backend:/home/node/app
+    depends_on:
+      - backend
+    ports:
+      - "5436:5436"
+    command: yarn start
