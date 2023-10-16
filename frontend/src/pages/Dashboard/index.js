@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-// import api from '../../services/api';
-
-import chart from '../../lib/chartjs';
+import 'chart.js/auto';
+import { Doughnut } from 'react-chartjs-2';
+import api from '../../services/api';
 
 import DefaultLayout from '../_layouts/default';
 import Barside from '../../components/Barside';
@@ -16,6 +16,26 @@ import {
 
 function Dashboard() {
   const name = useSelector(((state) => state.user.profile.name));
+  const [doctors, setDoctors] = useState([]);
+
+  useEffect(() => {
+    api.get('doctors')
+      .then((response) => { setDoctors(response.data); })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  const [userData, setUserData] = useState({
+    labels: doctors.map((doctor) => doctor.name),
+    datasets: [{
+      label: 'Médicos',
+      data: doctors.map((doctor) => doctor.id),
+      backgroundColor: ['#FF7723'],
+      borderColor: 'black',
+      borderWidth: 2,
+    }],
+  });
 
   return (
     <DefaultLayout>
@@ -39,7 +59,7 @@ function Dashboard() {
               <p className="card-text lh-1">Total de Cirurgias</p>
             </div>
             <div className="">
-              <canvas id={chart} />
+              <Doughnut data={userData} />
             </div>
           </Box>
           <Box>
