@@ -5,7 +5,13 @@ import {
 import { toast } from 'react-toastify';
 import api from '../../../../services/api';
 
-import { registerPatientInSuccess, registerFailure, removeFailure } from './actions';
+import {
+  registerPatientInSuccess,
+  registerFailure,
+  removeFailure,
+  updatePatientSuccess,
+  updatePatientFailure,
+} from './actions';
 
 export function* registerPatient({ payload }) {
   try {
@@ -23,6 +29,29 @@ export function* registerPatient({ payload }) {
   } catch (err) {
     toast.error('Falha no cadastro, verifique os dados');
     yield put(registerFailure());
+  }
+}
+
+export function* updatePatient({ payload }) {
+  try {
+    const {
+      id, data, navigate,
+    } = payload;
+
+    const patient = data;
+
+    const response = yield call(api.put, `patients/${id}`, patient);
+
+    toast.success('Paciente atualizado com sucesso!');
+
+    yield put(updatePatientSuccess(response.data));
+
+    console.log(response.data);
+
+    navigate('/list/patient');
+  } catch (err) {
+    toast.error('Erro a atualizar paciente, verifique seus dados!');
+    yield put(updatePatientFailure);
   }
 }
 
@@ -54,4 +83,5 @@ export default all([
   takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@register/REGISTERPATIENT_IN_REQUEST', registerPatient),
   takeLatest('@remove/REMOVE_PATIENT', removePatient),
+  takeLatest('@patient/UPDATE_PATIENT_REQUEST', updatePatient),
 ]);

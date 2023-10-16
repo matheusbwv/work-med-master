@@ -14,11 +14,13 @@ export function registerMedicInSuccess(doctor) {
   };
 }
 
-export function updateMedicRequest(data) {
+export function updateMedicRequest(id, data, navigate) {
   return {
     type: '@medic/UPDATE_MEDIC_REQUEST',
     payload: {
+      id,
       data,
+      navigate,
     },
   };
 }

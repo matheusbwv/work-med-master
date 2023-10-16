@@ -30,15 +30,6 @@ function SignIn() {
 
   return (
     <AuthLayout>
-      <Container>
-        <h1>WORKMED</h1>
-        <img src={workmed} alt="Banner" />
-        <h2>What is Lorem Ipsum?</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-          Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,
-          when an unknown
-        </p>
-      </Container>
       <Forms>
         <img src={Logo} alt="WorMed" />
         <h2>Bem-Vindo de Volta!</h2>
@@ -51,6 +42,15 @@ function SignIn() {
           <button type="submit">{loading ? 'Carregando...' : 'Acessar'}</button>
         </Form>
       </Forms>
+      <Container>
+        <h1>WORKMED</h1>
+        <img src={workmed} alt="Banner" />
+        <h2>What is Lorem Ipsum?</h2>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+          Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,
+          when an unknown
+        </p>
+      </Container>
     </AuthLayout>
   );
 }

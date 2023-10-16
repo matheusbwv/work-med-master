@@ -41,6 +41,12 @@ class RoomController {
     });
   }
 
+  async patch(req, res) {
+    const room = await Room.findByPk(req.params.id);
+
+    return res.json(room);
+  }
+
   async update(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
@@ -54,7 +60,7 @@ class RoomController {
 
     const room = await Room.findByPk(req.params.id);
 
-    room.update({
+    await room.update({
       name: req.body.name,
       floor: req.body.floor,
       room: req.body.number,

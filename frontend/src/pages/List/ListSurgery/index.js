@@ -68,7 +68,7 @@ export function ListSurgery() {
                   <li>{surgery.name}</li>
                   <li>31/08/2002</li>
                   <li>
-                    <Link to="/update/surgery"><img src={Edit} alt="Edit" /></Link>
+                    <Link to={`/update/surgery/${surgery.id}`}><img src={Edit} alt="Edit" /></Link>
                     <button onClick={() => handleRemove(surgery.id)} type="button"><img src={Remove} alt="Remove" /></button>
                   </li>
                 </Infor>

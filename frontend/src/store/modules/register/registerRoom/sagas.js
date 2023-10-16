@@ -5,7 +5,9 @@ import {
 import { toast } from 'react-toastify';
 import api from '../../../../services/api';
 
-import { registerRoomInSuccess, registerFailure, removeFailure } from './actions';
+import {
+  registerRoomInSuccess, registerFailure, removeFailure, updateRoomSuccess, updateRoomFailure,
+} from './actions';
 
 export function* registerRoom({ payload }) {
   try {
@@ -29,6 +31,27 @@ export function* registerRoom({ payload }) {
   } catch (err) {
     toast.error('Falha no cadastro, verifique os dados');
     yield put(registerFailure());
+  }
+}
+
+export function* updateRoom({ payload }) {
+  try {
+    const {
+      id, data, navigate,
+    } = payload;
+
+    const room = data;
+
+    const response = yield call(api.put, `rooms/${id}`, room);
+
+    toast.success('Sala atualizada com sucesso!');
+
+    yield put(updateRoomSuccess(response.data));
+
+    navigate('/list/room');
+  } catch (err) {
+    toast.error('Erro a atualizar paciente, verifique seus dados!');
+    yield put(updateRoomFailure);
   }
 }
 
@@ -60,4 +83,5 @@ export default all([
   takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@register/REGISTERROOM_IN_REQUEST', registerRoom),
   takeLatest('@remove/REMOVE_ROOM', removeRoom),
+  takeLatest('@room/UPDATE_ROOM_REQUEST', updateRoom),
 ]);

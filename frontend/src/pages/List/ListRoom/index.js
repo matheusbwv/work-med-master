@@ -68,7 +68,7 @@ export function ListRoom() {
                   <li>{`SALA - ${room.number}`}</li>
                   <li>31/08/2002</li>
                   <li>
-                    <Link to="/update/room"><img src={Edit} alt="Edit" /></Link>
+                    <Link to={`/update/room/${room.id}`}><img src={Edit} alt="Edit" /></Link>
                     <button onClick={() => handleRemove(room.id)} type="button"><img src={Remove} alt="Remove" /></button>
                   </li>
                 </Infor>

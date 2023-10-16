@@ -21,20 +21,24 @@ routes.use(authMiddleware);
 routes.post('/surgeries', SurgeryController.store);
 routes.get('/surgeries', SurgeryController.index);
 routes.put('/surgeries/:id', SurgeryController.update);
+routes.patch('/surgeries/:id', SurgeryController.show);
 routes.delete('/surgeries/:id', SurgeryController.delete);
 
 routes.post('/patients', PatientsController.store);
 routes.get('/patients', PatientsController.index);
 routes.put('/patients/:id', PatientsController.update);
+routes.patch('/patients/:id', PatientsController.show);
 routes.delete('/patients/:id', PatientsController.delete);
 
 routes.post('/doctors', DoctorController.store);
 routes.get('/doctors', DoctorController.index);
+routes.patch('/doctors/:id', DoctorController.show);
 routes.put('/doctors/:id', DoctorController.update);
 routes.delete('/doctors/:id', DoctorController.delete);
 
 routes.post('/rooms', RoomController.store);
 routes.get('/rooms', RoomController.index);
+routes.patch('/rooms/:id', RoomController.patch);
 routes.put('/rooms/:id', RoomController.update);
 routes.delete('/rooms/:id', RoomController.delete);
 

@@ -27,8 +27,6 @@ export function* registerMedic({ payload }) {
 
     const doctor = response.data;
 
-    // api.defaults.headers.Authorization = `Bearer ${token}`;
-
     yield put(registerMedicInSuccess(doctor));
 
     navigate('/list/doctor');
@@ -41,22 +39,18 @@ export function* registerMedic({ payload }) {
 export function* updateMedic({ payload }) {
   try {
     const {
-      name, gender, speciality, crm, cpf, adress, navigate,
+      id, data, navigate,
     } = payload;
 
-    const doctor = {
-      name, gender, speciality, crm, cpf, adress,
-    };
+    const doctor = data;
 
-    console.log(payload);
-
-    const response = yield call(api.put, 'doctors', doctor);
+    const response = yield call(api.put, `doctors/${id}`, doctor);
 
     toast.success('Médico atualizado com sucesso!');
 
-    navigate('/doctor/list');
-
     yield put(updateMedicSuccess(response.data));
+
+    navigate('/list/doctor');
   } catch (err) {
     toast.error('Erro a atualizar médico, verifique seus dados!');
     yield put(updateMedicFailure);

@@ -41,9 +41,9 @@ class PatientController {
       contact: Yup.string(),
       expenses: Yup.number(),
       status_post_operation: Yup.string(),
-      doctor: Yup.number(),
-      surgery: Yup.number(),
-      room: Yup.number(),
+      doctor_id: Yup.number(),
+      surgery_id: Yup.number(),
+      room_id: Yup.number(),
     });
 
     if (!(await schema.validate(req.body, { abortEarly: false }))) {
@@ -81,6 +81,11 @@ class PatientController {
     });
   }
 
+  async show(req, res) {
+    const patient = await Patient.findByPk(req.params.id);
+    return res.json(patient);
+  }
+
   async update(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
@@ -91,6 +96,9 @@ class PatientController {
       contact: Yup.string(),
       expenses: Yup.number(),
       status_post_operation: Yup.string(),
+      doctor_id: Yup.number(),
+      surgery_id: Yup.number(),
+      room_id: Yup.number(),
     });
 
     if (!(await schema.isValid(req.body, { abortEarly: false }))) {
@@ -111,7 +119,7 @@ class PatientController {
       }
     }
 
-    patient.update({
+    await patient.update({
       name: req.body.name,
       cpf: req.body.cpf,
       gender: req.body.gender,
@@ -120,6 +128,9 @@ class PatientController {
       medic_history: req.body.medic_history,
       contact: req.body.contact,
       status_post_operation: req.body.status_post_operation,
+      doctor_id: req.body.doctor_id,
+      room_id: req.body.room_id,
+      surgery_id: req.body.surgery_id,
     });
 
     return res.json(patient);

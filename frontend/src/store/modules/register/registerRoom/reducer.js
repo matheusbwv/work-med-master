@@ -6,13 +6,18 @@ const INITIAL_STATE = {
   room: null,
 };
 
-export default function registerPatient(state = INITIAL_STATE, action = {}) {
+export default function registerRoom(state = INITIAL_STATE, action = {}) {
   switch (action.type) {
     case '@register/REGISTERROOM_IN_SUCCESS':
       return produce(state, (draft) => {
         draft.token = action.payload.token;
         draft.room = action.payload.room;
       });
+    case '@room/UPDATE_ROOM_SUCCESS': {
+      return produce(state, (draft) => {
+        draft.room = action.payload.room;
+      });
+    }
     case '@remove/REMOVE_ROOM':
       return produce(state, (draft) => {
         draft.token = action.payload.token;

@@ -27,6 +27,30 @@ export function removePatient(id) {
   };
 }
 
+export function updatePatientRequest(id, data, navigate) {
+  return {
+    type: '@patient/UPDATE_PATIENT_REQUEST',
+    payload: {
+      id,
+      data,
+      navigate,
+    },
+  };
+}
+
+export function updatePatientSuccess(patient) {
+  return {
+    type: '@patient/UPDATE_PATIENT_SUCCESS',
+    payload: { patient },
+  };
+}
+
+export function updatePatientFailure() {
+  return {
+    type: '@patient/UPDATE_PATIENT_FAILURE',
+  };
+}
+
 export function removeFailure() {
   return {
     type: '@remove/REMOVE_PATIENT',

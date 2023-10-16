@@ -58,6 +58,12 @@ class DoctorController {
     });
   }
 
+  async show(req, res) {
+    const doctor = await Doctor.findByPk(req.params.id);
+
+    return res.json(doctor);
+  }
+
   async update(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string(),

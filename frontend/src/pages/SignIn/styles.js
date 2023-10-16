@@ -1,5 +1,16 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { darken } from 'polished';
+
+const appearFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
 
 export const Container = styled.div`
   background: linear-gradient(#421452, rgba(66,20,82,0.01));
@@ -38,9 +49,10 @@ export const Forms = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: space-evenly; */
+  justify-content: center;
   border-radius: 2px;
-  padding: 40px;
+
+  animation: ${appearFromLeft} 0.5s;
 
   h2 {
     font-size: 28px;
@@ -56,7 +68,7 @@ export const Forms = styled.div`
   form {
     display: flex;
     flex-direction: column;
-    margin-top: 40px;
+    margin-top: 20px;
 
     span {
       color: #f64c75;

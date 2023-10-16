@@ -19,6 +19,30 @@ export function registerRoomInSuccess(token, room) {
   };
 }
 
+export function updateRoomRequest(id, data, navigate) {
+  return {
+    type: '@room/UPDATE_ROOM_REQUEST',
+    payload: {
+      id,
+      data,
+      navigate,
+    },
+  };
+}
+
+export function updateRoomSuccess(room) {
+  return {
+    type: '@room/UPDATE_ROOM_SUCCESS',
+    payload: { room },
+  };
+}
+
+export function updateRoomFailure() {
+  return {
+    type: '@room/UPDATE_ROOM_FAILURE',
+  };
+}
+
 export function removeRoom(id) {
   return {
     type: '@remove/REMOVE_ROOM',

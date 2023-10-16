@@ -39,6 +39,12 @@ class SurgeryController {
     });
   }
 
+  async show(req, res) {
+    const surgery = await Surgery.findByPk(req.params.id);
+
+    return res.json(surgery);
+  }
+
   async update(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),

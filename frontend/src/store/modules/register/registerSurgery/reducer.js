@@ -13,6 +13,10 @@ export default function registerPatient(state = INITIAL_STATE, action = {}) {
         draft.token = action.payload.token;
         draft.surgery = action.payload.surgery;
       });
+    case '@surgery/UPDATE_SURGERY_SUCCESS':
+      return produce(state, (draft) => {
+        draft.surgery = action.payload.surgery;
+      });
     case '@remove/REMOVE_SURGERY':
       return produce(state, (draft) => {
         draft.token = action.payload.token;
